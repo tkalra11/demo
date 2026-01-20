@@ -19,10 +19,12 @@ body {
 h1 { font-size: 24px; margin-bottom: 10px; }
 p { color: #aaa; line-height: 1.5; }
 
-/* CONTENT CONTAINER */
+/* Update this section in your style.css */
+
 .container {
     padding: 20px;
-    padding-top: 60px; /* Space from top */
+    /* This ensures content starts BELOW the top notch/status bar */
+    padding-top: max(60px, env(safe-area-inset-top) + 20px); 
     text-align: center;
 }
 
