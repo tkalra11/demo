@@ -1,31 +1,62 @@
-// script.js - v2 (The "Bulletproof" Version)
+// script.js - v4 (Header + Navbar + Dynamic Titles)
 
-document.addEventListener('click', function(e) {
-    // 1. Find the closest link (a tag) in the clicked area
-    var target = e.target.closest('a');
+async function loadLayout() {
+    try {
+        // 1. Load Navbar (Bottom)
+        const navResponse = await fetch('navbar.html');
+        const navText = await navResponse.text();
+        document.body.insertAdjacentHTML('beforeend', navText);
 
-    // 2. If it's a link...
-    if (target) {
-        // ...and it points to the SAME website (hostname matches)
-        if (target.hostname === window.location.hostname) {
-            
-            // PREVENT the default browser "new window" behavior
-            e.preventDefault(); 
-            
-            // MANUALLY navigate to the new page within the same window
-            window.location.href = target.href;
-        }
+        // 2. Load Header (Top)
+        const headerResponse = await fetch('header.html');
+        const headerText = await headerResponse.text();
+        document.body.insertAdjacentHTML('afterbegin', headerText); // 'afterbegin' puts it at the TOP
+
+        // 3. Set the Title dynamically
+        updatePageTitle();
+
+        // 4. Highlight the active tab
+        highlightActiveTab();
+
+    } catch (error) {
+        console.error('Error loading layout:', error);
     }
-}, false);
+}
 
-// Active Tab Highlighter (Kept this the same, it works fine)
-document.addEventListener('DOMContentLoaded', function() {
+function updatePageTitle() {
+    // Get the filename (e.g., "meals.html")
+    const path = window.location.pathname.split('/').pop() || 'index.html';
+    const titleElement = document.getElementById('page-title');
+
+    // Simple logic to pick the name
+    if (path.includes('index')) {
+        titleElement.textContent = 'Dashboard';
+    } else if (path.includes('meals')) {
+        titleElement.textContent = 'Meals';
+    } else if (path.includes('workouts')) {
+        titleElement.textContent = 'Workouts';
+    } else if (path.includes('progress')) {
+        titleElement.textContent = 'Progress';
+    }
+}
+
+function highlightActiveTab() {
     const currentPath = window.location.pathname.split('/').pop() || 'index.html';
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
-        // getAttribute('href') is safer for matching relative paths like "meals.html"
         if (item.getAttribute('href') === currentPath) {
             item.classList.add('active');
         }
     });
-});
+}
+
+// Keep the Link Breakout fix!
+document.addEventListener('click', function(e) {
+    var target = e.target.closest('a');
+    if (target && target.hostname === window.location.hostname) {
+        e.preventDefault(); 
+        window.location.href = target.href;
+    }
+}, false);
+
+document.addEventListener('DOMContentLoaded', loadLayout);

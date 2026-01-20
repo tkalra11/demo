@@ -28,6 +28,7 @@ p { color: #aaa; line-height: 1.5; }
     text-align: center;
 }
 
+
 /* BOTTOM NAVIGATION BAR */
 .bottom-nav {
     position: fixed;
@@ -81,4 +82,36 @@ p { color: #aaa; line-height: 1.5; }
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+
+/* FIXED TOP HEADER */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    /* Use transparent black or solid color */
+    background-color: rgba(30, 30, 36, 0.95); 
+    backdrop-filter: blur(10px); /* Cool glass effect */
+    border-bottom: 1px solid #333;
+    z-index: 1000;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+
+    /* CRITICAL: Handle the iPhone Notch area */
+    padding-top: max(15px, env(safe-area-inset-top) + 10px);
+}
+
+.top-bar h1 {
+    font-size: 20px;
+    margin: 0;
+    font-weight: 600;
+}
+
+.header-icon {
+    color: #4A90E2;
+    cursor: pointer;
 }
