@@ -115,3 +115,302 @@ p { color: #aaa; line-height: 1.5; }
     color: #4A90E2;
     cursor: pointer;
 }
+
+/* WORKOUTS SPECIFIC STYLES */
+
+/* 1. Template Tabs (Top) */
+.template-nav {
+    position: fixed;
+    top: 60px; /* Below the main header */
+    left: 0;
+    width: 100%;
+    background: #1E1E24;
+    padding: 10px 0;
+    z-index: 900;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-bottom: 1px solid #333;
+}
+
+.template-tabs-scroll {
+    padding: 0 15px;
+}
+
+.template-tab {
+    display: inline-block;
+    padding: 6px 16px;
+    margin-right: 10px;
+    background: #333;
+    border-radius: 20px;
+    color: #888;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.template-tab.active {
+    background: #4A90E2;
+    color: white;
+}
+
+/* 2. Day Selector */
+.day-selector {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    background: #222;
+    padding: 5px;
+    border-radius: 12px;
+}
+
+.day-bubble {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    font-size: 12px;
+    color: #888;
+    cursor: pointer;
+}
+
+.day-bubble.active {
+    background: #4A90E2;
+    color: white;
+    font-weight: bold;
+}
+
+/* 3. Rest Toggle */
+.day-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 24px;
+    margin-left: 10px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #333;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 4px; bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider { background-color: #4A90E2; }
+input:checked + .slider:before { transform: translateX(16px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* 4. Action Buttons */
+.action-buttons {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn-add {
+    background: #333;
+    color: #4A90E2;
+    border: 1px dashed #4A90E2;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.btn-empty {
+    background: transparent;
+    color: #888;
+    border: 1px solid #444;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+}
+
+/* 5. Library Modal */
+.modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    z-index: 2000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Sheet style */
+}
+
+.modal.hidden { display: none; }
+
+.modal-content {
+    background: #1E1E24;
+    width: 100%;
+    height: 90%; /* Takes up 90% of screen */
+    border-radius: 20px 20px 0 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-modal {
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.search-bar {
+    width: 100%;
+    padding: 12px;
+    background: #121212;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.filter-chips {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.chip {
+    padding: 6px 12px;
+    background: #333;
+    border-radius: 15px;
+    font-size: 12px;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.chip.active {
+    background: #4A90E2;
+    color: white;
+}
+
+.library-list {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.lib-item {
+    padding: 15px;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* EXERCISE CARD (Inside the Daily Plan) */
+.exercise-card {
+    background: #2A2A30;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #333;
+}
+
+.ex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.ex-name {
+    font-weight: 600;
+    font-size: 15px;
+    text-transform: capitalize;
+}
+
+.ex-remove {
+    color: #ff4444;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 0 10px;
+}
+
+.ex-details {
+    display: flex;
+    gap: 15px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.input-group label {
+    font-size: 10px;
+    color: #888;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+}
+
+.input-group input {
+    background: #121212;
+    border: 1px solid #444;
+    color: white;
+    padding: 8px;
+    border-radius: 6px;
+    text-align: center;
+}
+
+/* LIBRARY LIST ITEMS */
+.lib-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.lib-name {
+    font-weight: 600;
+    text-transform: capitalize;
+    font-size: 14px;
+}
+
+.lib-target {
+    font-size: 11px;
+    color: #888;
+    text-transform: capitalize;
+}
+
+.btn-add-small {
+    background: #4A90E2;
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    font-size: 18px;
+    cursor: pointer;
+}

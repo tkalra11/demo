@@ -19,8 +19,59 @@
     <script src="script.js" defer></script>
 </head>
 <body>
-    <div class="container">
-        <p>Log your gym sessions and cardio.</p>
+
+    <div class="template-nav">
+        <div class="template-tabs-scroll" id="template-tabs">
+            </div>
+    </div>
+
+    <div class="container workout-container">
+        
+        <div class="day-selector" id="day-selector">
+            </div>
+
+        <div class="day-header">
+            <h2 id="current-day-name">Monday</h2>
+            <div class="rest-toggle-wrapper">
+                <span>Rest Day</span>
+                <label class="switch">
+                    <input type="checkbox" id="rest-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+        </div>
+
+        <div id="exercise-list" class="exercise-list">
+            </div>
+
+        <div class="action-buttons">
+            <button class="btn-add" onclick="openExerciseLibrary()">+ Add Exercise</button>
+            <button class="btn-empty" onclick="startEmptyWorkout()">Start Empty Workout</button>
+        </div>
+
+    </div>
+
+    <div id="library-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Library</h3>
+                <span class="close-modal" onclick="closeLibrary()">×</span>
+            </div>
+            
+            <input type="text" id="search-bar" placeholder="Search exercises..." class="search-bar">
+            
+            <div class="filter-chips" id="body-part-filters">
+                <span class="chip active" onclick="filterBodyPart('all')">All</span>
+                <span class="chip" onclick="filterBodyPart('Chest')">Chest</span>
+                <span class="chip" onclick="filterBodyPart('Back')">Back</span>
+                <span class="chip" onclick="filterBodyPart('Legs')">Legs</span>
+                <span class="chip" onclick="filterBodyPart('Arms')">Arms</span>
+                <span class="chip" onclick="filterBodyPart('Shoulders')">Shoulders</span>
+            </div>
+
+            <div id="library-list" class="library-list">
+                </div>
+        </div>
     </div>
 
 </body>
