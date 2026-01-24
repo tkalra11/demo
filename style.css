@@ -1,4 +1,8 @@
-/* style.css */
+/* --- GLOBAL FIXES --- */
+/* Prevent iPhone Zoom on inputs */
+input, select, textarea {
+    font-size: 16px !important; 
+}
 
 /* RESET & BASE STYLES */
 * {
@@ -118,18 +122,21 @@ p { color: #aaa; line-height: 1.5; }
 
 /* WORKOUTS SPECIFIC STYLES */
 
-/* 1. Template Tabs (Top) */
+/* --- TEMPLATE TABS (UPDATED) --- */
 .template-nav {
     position: fixed;
-    top: 60px; /* Below the main header */
     left: 0;
     width: 100%;
     background: #1E1E24;
     padding: 10px 0;
-    z-index: 900;
+    z-index: 950; /* Between Header (1000) and Content */
+    border-bottom: 1px solid #333;
     overflow-x: auto;
     white-space: nowrap;
-    border-bottom: 1px solid #333;
+    
+    /* DYNAMIC POSITIONING */
+    /* This variable will be set by JS. Default to 60px if JS fails */
+    top: var(--header-height, 60px); 
 }
 
 .template-tabs-scroll {
@@ -292,26 +299,49 @@ input:checked + .slider:before { transform: translateX(16px); }
     margin-bottom: 10px;
 }
 
+/* --- FILTER BUBBLES FIX --- */
 .filter-chips {
     display: flex;
     gap: 8px;
     overflow-x: auto;
-    padding-bottom: 10px;
+    padding: 5px 2px 10px 2px; /* Extra bottom padding for scrollbar space */
     margin-bottom: 10px;
+    -webkit-overflow-scrolling: touch; /* Smooth scroll on iOS */
+    scrollbar-width: none; /* Hide scrollbar Firefox */
+}
+
+.filter-chips::-webkit-scrollbar {
+    display: none; /* Hide scrollbar Chrome/Safari */
 }
 
 .chip {
-    padding: 6px 12px;
+    flex: 0 0 auto; /* Prevent shrinking */
+    padding: 8px 16px;
     background: #333;
-    border-radius: 15px;
-    font-size: 12px;
+    border-radius: 20px;
+    font-size: 13px;
     white-space: nowrap;
     cursor: pointer;
+    border: 1px solid transparent;
 }
 
 .chip.active {
     background: #4A90E2;
     color: white;
+    border-color: #4A90E2;
+}
+
+/* --- NEW: CUSTOM EXERCISE BUTTON --- */
+.btn-create-custom {
+    width: 100%;
+    padding: 12px;
+    background: #2A2A30;
+    color: #4A90E2;
+    border: 1px dashed #4A90E2;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .library-list {

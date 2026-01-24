@@ -12,6 +12,11 @@ async function loadLayout() {
         const headerText = await headerResponse.text();
         document.body.insertAdjacentHTML('afterbegin', headerText);
 
+        // Trigger the workout page layout fix if that function exists
+        if (typeof fixLayoutPositioning === "function") {
+            fixLayoutPositioning();
+        }
+
         // 3. Set the Title dynamically
         updatePageTitle();
 
@@ -82,3 +87,4 @@ document.addEventListener('DOMContentLoaded', loadLayout);
 
 // EXTRA SAFETY: Run the adjuster again if the user rotates their phone
 window.addEventListener('resize', adjustContentPadding);
+

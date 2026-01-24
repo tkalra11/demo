@@ -2,18 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="manifest" href="manifest.json">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="FitnessApp">
-    <title>My App</title>
+    <title>Workouts</title>
     <link rel="stylesheet" href="style.css">
+    
     <script src="script.js" defer></script>
-    <script src="workout.js" defer></script>
+    <script src="workouts.js" defer></script>
 </head>
-
 <body>
 
     <div class="template-nav">
@@ -42,7 +40,6 @@
 
         <div class="action-buttons">
             <button class="btn-add" onclick="openExerciseLibrary()">+ Add Exercise</button>
-            <button class="btn-empty" onclick="startEmptyWorkout()">Start Empty Workout</button>
         </div>
 
     </div>
@@ -56,13 +53,18 @@
             
             <input type="text" id="search-bar" placeholder="Search exercises..." class="search-bar">
             
+            <button class="btn-create-custom" onclick="createCustomExercise()">+ Create Custom Exercise</button>
+
             <div class="filter-chips" id="body-part-filters">
                 <span class="chip active" onclick="filterBodyPart('all')">All</span>
-                <span class="chip" onclick="filterBodyPart('Chest')">Chest</span>
-                <span class="chip" onclick="filterBodyPart('Back')">Back</span>
-                <span class="chip" onclick="filterBodyPart('Legs')">Legs</span>
-                <span class="chip" onclick="filterBodyPart('Arms')">Arms</span>
-                <span class="chip" onclick="filterBodyPart('Shoulders')">Shoulders</span>
+                <span class="chip" onclick="filterBodyPart('chest')">Chest</span>
+                <span class="chip" onclick="filterBodyPart('back')">Back</span>
+                <span class="chip" onclick="filterBodyPart('legs')">Legs</span>
+                <span class="chip" onclick="filterBodyPart('shoulders')">Shoulders</span>
+                <span class="chip" onclick="filterBodyPart('arms')">Arms</span>
+                <span class="chip" onclick="filterBodyPart('abs')">Abs</span>
+                <span class="chip" onclick="filterBodyPart('cardio')">Cardio</span>
+                <span class="chip" onclick="filterBodyPart('custom')">Custom</span>
             </div>
 
             <div id="library-list" class="library-list">
@@ -71,5 +73,4 @@
     </div>
 
 </body>
-
 </html>
